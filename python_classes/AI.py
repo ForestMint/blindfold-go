@@ -5,7 +5,17 @@ class AI():
         pass
 
     def randomly_pick_a_playable_move(self,game):
-        return "E5"
+        '''
+        abscissa = rand()
+        ordinate = rand()
+
+        while is_playable_move(abscissa, ordinate) ==False:
+            abscissa = rand()
+            ordinate = rand()  
+
+        return translate_move_from_computer_coordinates_to_go_coordinates(abscissa, ordinate)
+        '''
+        return "E4"
 
 
 

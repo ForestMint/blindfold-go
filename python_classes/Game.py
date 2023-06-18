@@ -62,12 +62,12 @@ class Game():
                     if self.list_of_moves[:-1]["player"]!=intersection:
                         pass
                     else:
-                    # let's calculate the number of liberties that the chain including this stone has
-                    # if the number of liberties is 0 then add this stone to the list of stones to capture 
-                    # and all the stones on capture list will be captured at the same moment at the end of this process
-                    # (since capturing stones within the loop would re-give liberties to the other stones of the chain)
-                    list_of_intersections_in_chain=[]
-                    my_chain=Chain(intersection,self.goban.matrix)
+                        # let's calculate the number of liberties that the chain including this stone has
+                        # if the number of liberties is 0 then add this stone to the list of stones to capture 
+                        # and all the stones on capture list will be captured at the same moment at the end of this process
+                        # (since capturing stones within the loop would re-give liberties to the other stones of the chain)
+                        list_of_intersections_in_chain=[]
+                        my_chain=Chain(intersection,self.goban.matrix)
 
 
 
