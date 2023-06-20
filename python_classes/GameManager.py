@@ -1,6 +1,7 @@
 
 from Game import Game
 from AI import AI
+from Move import Move
 import string
 import random
 
@@ -58,7 +59,8 @@ class GameManager():
 
 
     def request_move_from_AI(self):
-        return self.ai.randomly_pick_a_playable_move(self.game)
+        list_of_playable_moves= self.list_playable_moves()
+        return self.ai.randomly_pick_a_playable_move(self.game, list_of_playable_moves)
         
     def is_blindfolded_player_black(self):
         return self.blindfolded_player_is_black
@@ -90,6 +92,15 @@ class GameManager():
             
 
 
+    def list_existing_moves(self):
+        goban_size=self.game.goban.size
+        list_of_existing_moves=[]
+        list_of_abscissae=range(0,goban_size)
+        list_of_ordinates=range(0,goban_size)
+        for abscissa in list_of_abscissae :
+            for ordinate in list_of_ordinates :
+                list_of_existing_moves.append(Move(abscissa, ordinate))
+        return list_of_existing_moves
 
 
 
@@ -97,7 +108,7 @@ class GameManager():
         list_of_existing_moves=self.list_existing_moves()
         list_of_playable_moves=[]
         for existing_move in list_of_existing_moves:
-            if (self.game.goban.is_intersection_empty(abscissa,ordinate) and not(self.game.is_move_forbidden_because_of_the_rule_of_ko(abscissa,ordinate)) and not(self.game.is_move_suicide(abscissa,ordinate,stone_is_black=True))):
+            if (self.game.is_intersection_empty(existing_move) and not(self.game.is_move_forbidden_because_of_the_rule_of_ko(existing_move)) and not(self.game.is_move_suicide(existing_move,stone_is_black=True))):
                 list_of_playable_moves.append(existing_move)
         return list_of_playable_moves
 

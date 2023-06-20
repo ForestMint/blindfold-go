@@ -2,6 +2,7 @@
 class Goban():
 
     def __init__(self,size,number_of_handicap_stones):
+        self.size=size
         self.matrix=[]
         for i in range(0,size): 
             row = ["empty"]*size
@@ -78,6 +79,8 @@ class Goban():
         self.matrix[abscissa][ordinate]="empty"
 
     def is_intersection_empty(self,abscissa,ordinate):
+        print(abscissa)
+        print(ordinate)
         return self.matrix[abscissa][ordinate]=="empty"
 
     def is_move_suicide(self,abscissa,ordinate,stone_is_black):

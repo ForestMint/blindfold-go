@@ -1,10 +1,15 @@
-
+import random
 
 class AI():
     def __init__(self):
         pass
 
-    def randomly_pick_a_playable_move(self,game):
+    def randomly_pick_a_playable_move(self,game,list_of_playable_moves):
+        chosen_move = random.choice(list_of_playable_moves)
+        return chosen_move.get_go_name()
+
+
+
         '''
         abscissa = rand()
         ordinate = rand()
@@ -15,7 +20,10 @@ class AI():
 
         return translate_move_from_computer_coordinates_to_go_coordinates(abscissa, ordinate)
         '''
-        return "E4"
+
+
+
+        #return "E4"
 
 
 

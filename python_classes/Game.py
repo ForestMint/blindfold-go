@@ -36,10 +36,18 @@ class Game():
     def translate_move_from_go_coordinates_to_computer_coordinates(self,move):
         return {"computer_coordinates":[0,1]}
 
-    def is_move_forbidden_because_of_the_rule_of_ko(self,abscissa,ordinate):
+
+
+
+
+    def is_move_forbidden_because_of_the_rule_of_ko(self,move):
         return False
 
+    def is_move_suicide(self,move, stone_is_black):
+        return False
 
+    def is_intersection_empty(self, move):
+        return self.goban.is_intersection_empty(move.get_computer_coordinates()['abscissa'],move.get_computer_coordinates()['ordinate'])
 
 
 
