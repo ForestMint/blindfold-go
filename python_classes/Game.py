@@ -6,6 +6,7 @@ class Game():
     def __init__(self,size,number_of_handicap_stones):
         self.goban=Goban(size,number_of_handicap_stones)
         self.list_of_moves=[]
+        self.list_of_situations=[]
         self.number_of_prisoners_for_black=0
         self.number_of_prisoners_for_white=0
         self.black_just_has_passed=False
@@ -25,7 +26,7 @@ class Game():
         return (self.black_has_resigned or self.white_has_resigned)
 
     def add_stone(self,move):
-        pass
+        self.list_of_situations.append(self.goban.matrix)
 
     def winner_is_black(self):
         return True
@@ -41,9 +42,26 @@ class Game():
 
 
     def is_move_forbidden_because_of_the_rule_of_ko(self,move):
+        for situation in self.list_of_situations:
+            if self.goban.is_same_situation(situation): return True
         return False
 
     def is_move_suicide(self,move, stone_is_black):
+        '''
+            A move is forbidden by the rule of suicide if 
+            (it is a single stone that has no liberty OR it forms a group that has no liberty)
+            AND
+            (none of the opponent's groups that surround this stone or group is taken its last liberty wy the play of this move)
+        '''
+
+
+        # is the move a single stone ?
+        is_move_single_stone = self.is_single_stone()
+
+
+        return False
+
+    def is_single_stone(self):
         return False
 
     def is_intersection_empty(self, move):

@@ -75,6 +75,9 @@ class Goban():
         else:
             self.matrix[abscissa][ordinate]="white"
 
+    def is_same_situation(self, situation):
+        return situation == self.matrix
+
     def remove_stone(self,abscissa,ordinate):
         self.matrix[abscissa][ordinate]="empty"
 
