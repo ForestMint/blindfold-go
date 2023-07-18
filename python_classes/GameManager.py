@@ -13,7 +13,7 @@ class GameManager():
 
         random_bits = random.getrandbits(1)
         self.blindfolded_player_is_black= bool(random_bits)
-
+        self.black_to_play=number_of_handicap_stones==0
 
 
 
@@ -69,10 +69,27 @@ class GameManager():
         return self.game.is_over_for_some_reason()
 
     def is_playable_move(self, candidate_move):
-        return True
+
+        if candidate_move.get_computer_coordinates=={"abscissa":"", "ordinate":""}: 
+            return False
+        else: 
+            #print("game_manager.is_playable_move()")
+            #print(self.game.is_intersection_empty(candidate_move))
+            return self.game.is_intersection_empty(candidate_move)
 
     def play_move(self, move):
-        pass
+        if move.is_pass():
+            self.pass_move()
+        elif move.is_resign():
+            self.resign_game()
+        else:
+            letters_coordinates = list(string.ascii_uppercase)
+            letters_coordinates.remove("I")
+            abscissa=move.get_computer_coordinates()["abscissa"]
+            ordinate=move.get_computer_coordinates()["ordinate"]
+            stone_is_black=True
+            self.game.goban.add_stone(abscissa, ordinate, stone_is_black=self.black_to_play)
+            self.black_to_play=self.black_to_play==False
 
     @staticmethod
     def is_move(candidate_speech,goban_size):
@@ -83,11 +100,15 @@ class GameManager():
         list_of_moves=[]
         for abscissa in list_of_abscissae:
             for ordinate in list_of_ordinates:
+                #list_of_moves.append(Move(abscissa,ordinate).get_go_name())
                 list_of_moves.append(abscissa+str(ordinate))
         list_of_moves.append("pass")
         list_of_moves.append("resign")
         #list_of_moves.append("undo")
-
+        #print(list_of_moves)
+        #print("game_manager.is_move()")
+        #print(candidate_speech in list_of_moves)
+        #print(list_of_moves)
         return candidate_speech in list_of_moves
             
 
@@ -102,7 +123,8 @@ class GameManager():
                 list_of_existing_moves.append(Move(abscissa, ordinate))
         return list_of_existing_moves
 
-
+    def print_position(self):
+        self.game.print_position()
 
     def list_playable_moves(self):
         list_of_existing_moves=self.list_existing_moves()
@@ -110,7 +132,18 @@ class GameManager():
         for existing_move in list_of_existing_moves:
             if (self.game.is_intersection_empty(existing_move) and not(self.game.is_move_forbidden_because_of_the_rule_of_ko(existing_move)) and not(self.game.is_move_suicide(existing_move,stone_is_black=True))):
                 list_of_playable_moves.append(existing_move)
+        list_of_playable_moves.append("pass")
+        list_of_playable_moves.append("resign")
         return list_of_playable_moves
+
+    def blindfolded_player_starts(self, handicap):
+        if self.blindfolded_player_is_black and handicap ==0: 
+            return True
+        elif self.blindfolded_player_is_black==False and handicap>1:
+            return True
+        else:
+            return False
+
 
 
 if __name__ == "__main__":

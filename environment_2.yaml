@@ -1,0 +1,15 @@
+name: blindfold-go-2
+#channels:
+#- menpo
+#- defaults
+dependencies:
+- pip :
+  - speechrecognition
+  - pyttsx3
+  - comtypes
+  - pyaudio
+  - colorama
+  - termcolor
+#  - espeak
+
+

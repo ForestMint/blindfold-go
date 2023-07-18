@@ -6,7 +6,7 @@ class AI():
 
     def randomly_pick_a_playable_move(self,game,list_of_playable_moves):
         chosen_move = random.choice(list_of_playable_moves)
-        return chosen_move.get_go_name()
+        return chosen_move
 
 
 

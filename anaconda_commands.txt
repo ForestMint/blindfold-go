@@ -1,7 +1,7 @@
 $ conda env create --file environment.yaml
+$ conda env list
 $ conda activate blindfold-go
 $ python run.py
 $ conda deactivate
 $ conda env remove -n blindfold-go
-
 

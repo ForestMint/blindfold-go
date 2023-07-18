@@ -1,6 +1,14 @@
 from Goban import Goban
 from Chain import Chain
 
+import string
+
+from colorama import init
+from termcolor import colored
+from colorama import Fore, Back, Style
+init()
+
+
 class Game():
 
     def __init__(self,size,number_of_handicap_stones):
@@ -38,6 +46,23 @@ class Game():
         return {"computer_coordinates":[0,1]}
 
 
+    def print_position(self):
+        print('')
+        self.goban.print()
+
+        color = Fore.CYAN
+
+        #print("Number of prisoners for Black : "+str(self.number_of_prisoners_for_black))
+        print(f"{color}{'Number of prisoners for Black : '+str(self.number_of_prisoners_for_black)}")
+
+        print("Number of prisoners for White : "+str(self.number_of_prisoners_for_white))
+        if self.black_just_has_passed : print("Black passed.")
+        if self.white_just_has_passed : print("White passed.")
+
+        print(Style.RESET_ALL)
+
+        #color = Fore.WHITE
+        #init()
 
 
 
@@ -65,7 +90,10 @@ class Game():
         return False
 
     def is_intersection_empty(self, move):
-        return self.goban.is_intersection_empty(move.get_computer_coordinates()['abscissa'],move.get_computer_coordinates()['ordinate'])
+
+        abscissa=move.get_computer_coordinates()["abscissa"]
+        ordinate=move.get_computer_coordinates()["ordinate"]
+        return self.goban.is_intersection_empty(abscissa,ordinate)
 
 
 

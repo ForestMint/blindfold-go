@@ -1,0 +1,2 @@
+class BadHandicapError(Exception):
+    pass

@@ -1,3 +1,8 @@
+from colorama import init
+from termcolor import colored
+from colorama import Fore, Back, Style
+init()
+
 
 class Goban():
 
@@ -66,8 +71,46 @@ class Goban():
                 coordinates=coordinates_of_hoshis[hoshi_for_handicap_stone]
                 self.add_stone(coordinates[0],coordinates[1],True)
 
-        for row in self.matrix:
-            print(row)
+    def print(self):
+
+
+        display_matrix=[]
+        for i in range(0,len(self.matrix[0])):
+            line=[]
+            for j in range(0,len(self.matrix[0])):
+                line.append(self.matrix[j][i])
+            display_matrix.append(line)
+
+        
+                
+
+        reversed_matrix=[]
+        for i in range(0,len(self.matrix[0])):
+            reversed_matrix.append(display_matrix[len(self.matrix[0])-i-1])
+          
+
+
+
+
+        for row in reversed_matrix:
+            for item in row:
+                if item in ['black','white']:new_item="0" 
+                else : new_item="+"
+                if item in ('black'):  # or `if item in "+-|"`
+                    color = Fore.RED
+                elif item in ('white'): # or `if item in "12345"`
+                    color = Fore.GREEN
+                else: 
+                    color = Fore.WHITE
+                print(f"{color}{new_item}", end=' ')   # I add `space` instead of `\n` as `end` 
+
+                '''
+                text = colored(new_item, 'green','on_red')
+                print(text, end=' ')
+                '''
+            print() # go to next line
+
+    
 
     def add_stone(self,abscissa,ordinate,stone_is_black):
         if stone_is_black:
@@ -82,8 +125,6 @@ class Goban():
         self.matrix[abscissa][ordinate]="empty"
 
     def is_intersection_empty(self,abscissa,ordinate):
-        print(abscissa)
-        print(ordinate)
         return self.matrix[abscissa][ordinate]=="empty"
 
     def is_move_suicide(self,abscissa,ordinate,stone_is_black):
