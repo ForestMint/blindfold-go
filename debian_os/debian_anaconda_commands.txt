@@ -1,0 +1,7 @@
+$ conda env create --file debian_env.yaml
+$ conda activate blindfold-go
+$ python run.py
+$ conda deactivate
+$ conda env remove -n blindfold-go
+
+
