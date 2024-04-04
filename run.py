@@ -1,5 +1,8 @@
 
+import sente
+
 import speech_recognition as sr
+
 
 import configparser
 config = configparser.ConfigParser()
