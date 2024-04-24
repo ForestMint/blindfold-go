@@ -1,7 +1,8 @@
 
-import sente
 
 import speech_recognition as sr
+
+from GameManager import GameManager
 
 
 import configparser
@@ -9,13 +10,13 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 # speak structure for non-Debian OSs
-'''
+
 import pyttsx3
 engine = pyttsx3.init()
 engine.say("I will speak this text")
-'''
 
-# speak structure for Debian Oss
+
+# speak structure for Debian OSs
 '''
 import espeak
 espeak.init()
@@ -30,7 +31,6 @@ sys.path.append('./python_classes')
 
 import os
 
-from GameManager import GameManager
 size=int(config['GOBAN']['size'])
 handicap=int(config['HANDICAP']['number_of_stones'])
 my_game_manager=GameManager(size,handicap)
