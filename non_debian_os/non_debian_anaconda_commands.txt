@@ -1,0 +1,12 @@
+$ conda env create --file non_debian_env.yaml
+$ conda env list
+$ conda list -n blindfold-go
+$ conda update -n blindfold-go sente
+$ conda env update --file non_debian_env_2.yaml --prune
+$ conda list -n blindfold-go
+$ conda activate blindfold-go
+$ python run.py
+$ conda deactivate
+$ conda env remove -n blindfold-go
+
+$ conda install -c conda-forge sente

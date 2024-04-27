@@ -1,0 +1,21 @@
+name: blindfold-go
+
+channels:
+- conda-forge
+- pytorch
+- defaults
+
+dependencies:
+- speechrecognition
+#- pyttsx3
+- comtypes
+- pyaudio=0.2
+- python=3.8
+- pip=20.0
+#- pip :
+#  - python-espeak==0.6
+#  - sente==0.4
+
+
+
+
